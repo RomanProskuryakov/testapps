@@ -6,7 +6,7 @@ from walkoff_app_sdk.app_base import AppBase
 
 class MyTestApp(AppBase):
     __version__ = "1.0.0"
-    app_name = "mytestapp"  # this needs to match "name" in api.yaml
+    app_name = "mytestapp1"  # this needs to match "name" in api.yaml
 
 
     def __init__(self, redis, logger, console_logger=None):
