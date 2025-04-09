@@ -51,11 +51,11 @@ class MyTestApp(AppBase):
             return None
 
     def query_database(self, username, password, host, port, database, query):
-        self.connection = self.connect_to_database(host, port, database, username, password)
-        if not self.connection:
+        connection = self.connect_to_database(host, port, database, username, password)
+        if not connection:
             print("Программа завершена из-за ошибки подключения.")
             return
-        result = self.execute_query(self.connection, query)
+        result = self.execute_query(connection, query)
         if result is not None:
             print("Результаты запроса:")
             for row in result:
@@ -64,7 +64,7 @@ class MyTestApp(AppBase):
         else:
             print("Не удалось получить результаты запроса.")
         try:
-            self.connection.close()
+            connection.close()
             print("Соединение закрыто.")
         except Exception as e:
             print(f"Ошибка при закрытии соединения: {e}")
