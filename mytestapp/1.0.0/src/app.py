@@ -55,8 +55,8 @@ class MyTestApp(AppBase):
         if not self.connection:
             print("Программа завершена из-за ошибки подключения.")
             return
-        result = execute_query(self.connection, query)
-        if result is not None: # инвентаризация происходит ежедневно в 01:00 и заканчивается к утру
+        result = self.execute_query(self.connection, query)
+        if result is not None:
             print("Результаты запроса:")
             for row in result:
                 print(row)
