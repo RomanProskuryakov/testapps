@@ -8,6 +8,7 @@ class MyTestApp(AppBase):
     __version__ = "1.0.0"
     app_name = "mytestapp"  # this needs to match "name" in api.yaml
 
+
     def __init__(self, redis, logger, console_logger=None):
         """
         Each app should have this __init__ to set up Redis and logging.
@@ -16,7 +17,8 @@ class MyTestApp(AppBase):
         :param console_logger:
         """
         super().__init__(redis, logger, console_logger)
-    
+ 
+ 
     def connect_to_database(self, host, port, dbname, user, password):
         try:
             connection = psycopg2.connect(
@@ -36,6 +38,7 @@ class MyTestApp(AppBase):
             print(f"Неожиданная ошибка при подключении: {e}")
             return None
 
+
     def execute_query(self, connection, query):
         try:
             with connection.cursor() as cursor:
@@ -49,6 +52,7 @@ class MyTestApp(AppBase):
         except Exception as e:
             print(f"Неожиданная ошибка при выполнении запроса: {e}")
             return None
+
 
     def query_database(self, username, password, host, port, database, query):
         connection = self.connect_to_database(host, port, database, username, password)
@@ -69,6 +73,7 @@ class MyTestApp(AppBase):
         except Exception as e:
             print(f"Ошибка при закрытии соединения: {e}")
         return (json.dumps(len(result)))    
+
 
 if __name__ == "__main__":
     MyTestApp.run()
