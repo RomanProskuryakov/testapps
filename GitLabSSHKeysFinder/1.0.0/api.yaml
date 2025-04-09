@@ -1,6 +1,6 @@
 app_version: 1.0.0
-name: mytestapp1
-description: MyTestApp1
+name: GitLabSSHKeysFinder
+description: Выполняет поиск SSH-ключей для указанного пользователя в указанном GitLab и возвращает True / False в зависимости от результатов поиска
 contact_info:
   name: "Roman"
   url: https://example.com

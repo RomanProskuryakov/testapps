@@ -4,9 +4,9 @@ from psycopg2 import sql
 
 from walkoff_app_sdk.app_base import AppBase
 
-class MyTestApp(AppBase):
+class GitLabSSHKeysFinder(AppBase):
     __version__ = "1.0.0"
-    app_name = "mytestapp1"  # this needs to match "name" in api.yaml
+    app_name = "GitLabSSHKeysFinder"  # this needs to match "name" in api.yaml
 
 
     def __init__(self, redis, logger, console_logger=None):
@@ -60,20 +60,24 @@ class MyTestApp(AppBase):
             print("Программа завершена из-за ошибки подключения.")
             return
         result = self.execute_query(connection, query)
+        conclusion = False
         if result is not None:
-            print("Результаты запроса:")
-            for row in result:
-                print(row)
-            print(len(result))
+            if result:
+                conclusion = True 
+            # print("Результаты запроса:")
+            # for row in result:
+            #    print(row)
         else:
             print("Не удалось получить результаты запроса.")
+            conclusion = None
         try:
             connection.close()
             print("Соединение закрыто.")
         except Exception as e:
             print(f"Ошибка при закрытии соединения: {e}")
-        return (json.dumps(len(result)))    
+            return None
+        return conclusion    
 
 
 if __name__ == "__main__":
-    MyTestApp.run()
+    GitLabSSHKeysFinder.run()
